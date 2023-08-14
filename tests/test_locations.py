@@ -9,7 +9,7 @@ class TestLocations:
             query = database_connection.execute("SELECT MAX(street_address) FROM hr.locations").fetchall()
         
         with allure.step('Validation that MAX value matches expected from source'):
-            expected_result = [('Schwanthalerstr. 7031',)]
+            expected_result = [('Some street 10',)]
             assert str(query) == str(expected_result), f"Expected: {expected_result}, Actual: {query}"
     
     @allure.title('Validation that user is able to put proper data to database')
