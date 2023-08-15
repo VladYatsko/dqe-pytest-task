@@ -1,17 +1,15 @@
 pipeline {
-  agent any
-  stages {
-    stage('Installing python') {
-      steps {
-        sh 'apt-get update && apt-get install -y python3 python3-pip'
-      }
+  agent {
+    docker {
+      image 'python:3.8' // Выберите подходящую версию Python
+      args '-u' // Используйте этот флаг для буферизации вывода
     }
+  }
+  stages {
     stage('Install Dependencies and Run Tests') {
       steps {
-        withPythonEnv('python') {
-          sh "pip install -r requirements.txt"
-          sh "pytest --alluredir=results --reruns 5 ./tests/"
-        }
+        sh "pip install -r requirements.txt"
+        sh "pytest --alluredir=results --reruns 5 ./tests/"
       }
     }
     stage('Create, copy and push in new branch') {
