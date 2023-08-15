@@ -3,12 +3,9 @@ pipeline {
   stages {
     stage('Install Dependencies and Run Tests') {
       steps {
-        script {
-          def pythonEnv = 'my-virtual-env'
-          sh ". ${pythonEnv}/bin/activate"
+        withPythonEnv('python') {
           sh "pip install -r requirements.txt"
-          sh "chmod +x test_runner.sh"
-          sh "./test_runner.sh"
+          sh "pytest --alluredir=results --reruns 5 ./tests/"
         }
       }
     }
