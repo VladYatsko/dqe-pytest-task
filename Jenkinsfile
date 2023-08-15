@@ -1,11 +1,6 @@
 pipeline {
   agent any
   stages {
-    stage('Cloning repository') {
-      steps {
-        checkout scm
-      }
-    }
     stage('Install Dependencies and Run Tests') {
             steps {
                 withPythonEnv('my-virtual-env') {
