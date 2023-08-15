@@ -2,12 +2,6 @@ pipeline {
   agent any
   stages {
     stage('Install Dependencies and Run Tests') {
-      agent {
-        docker {
-          image 'python:3.8'
-          args '-u'
-        }
-      }
       steps {
         script {
           sh "pip install -r requirements.txt"
