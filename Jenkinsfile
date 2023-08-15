@@ -12,10 +12,11 @@ pipeline {
         sh 'pip install -r requirements.txt'
       }
     }
-    stage('Test suite 1. Robot') {
+    stage('Test phase') {
       steps {
-        echo 'Testing using Robot Framework'
-        sh 'robot test_cases.robot'
+        echo 'Testing phase'
+        sh 'chmod +x test_runner.sh'
+        sh './test_runner.sh'
       }
     }
     stage('Create, copy and push in new branch') {
