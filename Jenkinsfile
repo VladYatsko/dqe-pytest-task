@@ -1,8 +1,8 @@
 pipeline {
   agent {
     docker {
-      image 'python:3.8' // Выберите подходящую версию Python
-      args '-u' // Используйте этот флаг для буферизации вывода
+      image 'python:3.8'
+      args '-u'
     }
   }
   stages {
