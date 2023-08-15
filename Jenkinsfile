@@ -1,15 +1,18 @@
 pipeline {
-  agent {
-    docker {
-      image 'python:3.8'
-      args '-u'
-    }
-  }
+  agent any
   stages {
     stage('Install Dependencies and Run Tests') {
+      agent {
+        docker {
+          image 'python:3.8'
+          args '-u'
+        }
+      }
       steps {
-        sh "pip install -r requirements.txt"
-        sh "pytest --alluredir=results --reruns 5 ./tests/"
+        script {
+          sh "pip install -r requirements.txt"
+          sh "pytest --alluredir=results --reruns 5 ./tests/"
+        }
       }
     }
     stage('Create, copy and push in new branch') {
