@@ -1,6 +1,11 @@
 pipeline {
   agent any
   stages {
+    stage('Installing python') {
+      steps {
+        sh 'apt-get update && apt-get install -y python3 python3-pip'
+      }
+    }
     stage('Install Dependencies and Run Tests') {
       steps {
         withPythonEnv('python') {
