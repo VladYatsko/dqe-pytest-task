@@ -5,7 +5,7 @@ pipeline {
       steps {
         script {
           def pythonEnv = 'my-virtual-env'
-          sh "source ${pythonEnv}/bin/activate"
+          sh ". ${pythonEnv}/bin/activate"
           sh "pip install -r requirements.txt"
           sh "chmod +x test_runner.sh"
           sh "./test_runner.sh"
