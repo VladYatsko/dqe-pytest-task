@@ -11,7 +11,6 @@ pipeline {
     }
     stage('Create, copy in new branch') {
       steps {
-        git branch -D pre-prod
         sh 'git checkout -b pre-prod'
         sh 'git add .'
         sh 'git config --global user.name "Uladzislau Yatsko"'
