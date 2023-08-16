@@ -16,6 +16,7 @@ pipeline {
         sh 'git config --global user.name "Uladzislau Yatsko"'
         sh 'git config --global user.email "uladzislau_yatsko@epam.com"'
         sh 'git commit -m "Pushing to pre-prod"'
+    }
     stage('Push to pre-prod') {
             steps {
                 script {
@@ -27,5 +28,4 @@ pipeline {
         }
       }
     }
-  }
 }
