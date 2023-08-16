@@ -9,14 +9,22 @@ pipeline {
         }
       }
     }
-    stage('Create, copy and push in new branch') {
+    stage('Create, copy in new branch') {
       steps {
         sh 'git checkout -b pre-prod'
         sh 'git add .'
         sh 'git config --global user.name "Uladzislau Yatsko"'
         sh 'git config --global user.email "uladzislau_yatsko@epam.com"'
         sh 'git commit -m "Pushing to pre-prod"'
-        sh 'git push origin pre-prod'
+    stage('Push to pre-prod') {
+            steps {
+                script {
+                    withEnv(['GIT_TOKEN=TOKEN']) {
+                        sh 'git push origin pre-prod'
+                    }
+                }
+            }
+        }
       }
     }
   }
