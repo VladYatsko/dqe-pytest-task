@@ -11,6 +11,7 @@ pipeline {
     }
     stage('Create, copy in new branch') {
       steps {
+        git branch -D pre-prod
         sh 'git checkout -b pre-prod'
         sh 'git add .'
         sh 'git config --global user.name "Uladzislau Yatsko"'
@@ -20,10 +21,8 @@ pipeline {
     }
     stage('Push to pre-prod') {
       steps {
-        script {
-          withEnv(["GIT_TOKEN=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"]) {
+        sshagent (credentials: ['VladYatsko']){
             sh 'git push origin pre-prod'
-          }
         }
       }
     }
