@@ -19,7 +19,7 @@ pipeline {
     stage('Push to pre-prod') {
             steps {
                 script {
-                    withEnv(['GIT_TOKEN=TOKEN']) {
+                    withEnv(['GIT_TOKEN=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']) {
                         sh 'git push origin pre-prod'
                     }
                 }
